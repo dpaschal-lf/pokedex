@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import './pokedex.css';
 import PokeSearch from './pokedex_search/pokesearch';
 import PokeResults from './pokedex_results/pokeresults';
-import PokeDetails from './pokedex_details/pokedetails'
+import PokeDetails from './pokedex_details/pokedetails';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
 class Pokedex extends Component {
 	render(){
-		return (<div className="pokedex">
-			<PokeSearch />
-			<PokeResults />
-			<PokeDetails />
-		</div>)
+		return (
+		<BrowserRouter>
+			<div className="pokedex">
+				<Switch>
+					<Route exact path="/" component={PokeSearch} />
+					<Route exact path="/results" component={PokeResults} />
+					<Route exact path="/details" component={PokeDetails} />
+				</Switch>
+			</div>
+		</BrowserRouter>
+		)
 	}
 }
 
