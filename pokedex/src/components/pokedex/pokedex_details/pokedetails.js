@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './pokedetails.css';
+import {Link} from 'react-router-dom';
 
 class PokeDetails extends Component {
 	render(){
 		return (
 <div className="pokedex-details">
+	<Link to="/results">go to results</Link>
 	<main className="pokeCard">
 		<figure className="avatar"></figure>
 		<div className="infoPanel">
