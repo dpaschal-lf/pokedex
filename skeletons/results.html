@@ -22,6 +22,37 @@ body{
 	top: 5%;
 	position: absolute;
 }
+#pokedex-search .resultsContainer{
+	width: 50%;
+	height: 50%;
+	background-color: lightgreen;
+	float: left;	
+}
+#pokedex-search .resultsCard{
+	width: 90%;
+	height: 90%;
+	background-color: white;
+	position: relative;
+	left: 5%;
+	top: 5%;
+}
+#pokedex-search .picture{
+	height: 100%;
+	width: 90%;
+	margin: 0 auto;
+	background-image: url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png);
+	background-repeat: no-repeat;
+	background-size: 80%;
+	background-position: center;
+	box-sizing: border-box;
+}
+#pokedex-search figcaption.name{
+	position: absolute;
+	bottom: 0%;
+	font-size: 5vmin;
+	text-align: center;
+	width: 100%;
+}
 
 	</style>
 	<title></title>
@@ -29,10 +60,32 @@ body{
 <body>
 <div id="pokedex-search">
 	<div class="resultsPanel">
-		<div class="resultsCard">
-			<figure class="picture"></figure>
+		<div class="resultsContainer">
+			<div class="resultsCard">
+				<figure class="picture"></figure>
+				<figcaption class="name">Bulbasaur</figcaption>	
+			</div>
+		</div>
+		<div class="resultsContainer">
+			<div class="resultsCard">
+				<figure class="picture"></figure>
+				<figcaption class="name">Bulbasaur</figcaption>	
+			</div>
+		</div>
+		<div class="resultsContainer">
+			<div class="resultsCard">
+				<figure class="picture"></figure>
+				<figcaption class="name">Bulbasaur</figcaption>	
+			</div>
+		</div>
+		<div class="resultsContainer">
+			<div class="resultsCard">
+				<figure class="picture"></figure>
+				<figcaption class="name">Bulbasaur</figcaption>	
+			</div>
 		</div>
 	</div>
+
 </div>
 </body>
 </html>
