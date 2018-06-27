@@ -3,7 +3,12 @@ import './pokesearch.css';
 
 class PokeSearch extends Component {
 	render(){
-		return (<div>Search</div>)
+		return (
+<div className="pokedex-search">
+	<input className="nameinput" type="text" placeholder="enter name"></input>
+	<button className="searchbutton">SEARCH</button>
+</div>
+		)
 	}
 }
 

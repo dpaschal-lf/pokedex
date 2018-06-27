@@ -4,9 +4,7 @@ import Pokedex from './components/pokedex/pokedex';
 class App extends Component {
   render() {
     return (
-      <div className="App">
         <Pokedex />
-      </div>
     );
   }
 }

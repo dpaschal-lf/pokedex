@@ -6,7 +6,7 @@ import PokeDetails from './pokedex_details/pokedetails'
 
 class Pokedex extends Component {
 	render(){
-		return (<div>
+		return (<div className="pokedex">
 			<PokeSearch />
 			<PokeResults />
 			<PokeDetails />
