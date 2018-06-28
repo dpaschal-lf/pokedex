@@ -12,7 +12,8 @@ class Pokedex extends Component {
 			<div className="pokedex">
 				<Switch>
 					<Route exact path="/" component={PokeSearch} />
-					<Route exact path="/results" component={PokeResults} />
+					<Route exact path="/search/:term?" component={PokeSearch} />
+					<Route exact path="/search/:term/results/:ids" component={PokeResults} />
 					<Route exact path="/details" component={PokeDetails} />
 				</Switch>
 			</div>

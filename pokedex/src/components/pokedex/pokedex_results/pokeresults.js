@@ -3,6 +3,10 @@ import './pokeresults.css';
 import {Link} from 'react-router-dom';
 
 class PokeResults extends Component {
+	constructor(props){
+		super(props);
+		console.log(this.props)
+	}
 	render(){
 		return (
 <div className="pokedex-results">

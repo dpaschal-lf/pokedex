@@ -7,22 +7,31 @@ class PokeSearch extends Component {
 		super(props);
 		this.pokemonBaseData = [];
 		this.maxAutoCompleteEntries = 3;
+		this.candidateEntries = [];
 		this.state = {
 			inputVal: '', 
 			autoCompleteEntries: ''
 		}
 		this.updateInput = this.updateInput.bind(this);
 		this.useAutoCompleteEntry = this.useAutoCompleteEntry.bind(this);
+		this.handleSearchClick = this.handleSearchClick.bind(this);
 	}
 	parsePokeCSV(csvData){
 		const rows = csvData.split( csvData[ csvData.length-1]);
 		rows.shift(); //get rid of headers
-		this.pokemonBaseData = rows.map( item=> {
+		this.pokemonNames = rows.map( item=> {
 			const stats = item.split(',');
 			return stats[1];
 			//return { name: stats[1], species_id: stats[2], height: stats[3]}
 		});
-		this.pokemonBaseData.sort();
+		this.pokemonNames.sort();
+		this.pokemonBaseData = {};
+		for(let pokeIndex=0; pokeIndex<rows.length; pokeIndex++){
+			const stats = rows[pokeIndex].split(',');
+			this.pokemonBaseData[stats[1]] = { id: stats[2], name: stats[1], height: stats[3] }
+		}
+		console.log(this.pokemonBaseData);
+
 	}
 	componentDidMount(){
 		console.log('mounted');
@@ -37,12 +46,15 @@ class PokeSearch extends Component {
 	}
 	updateInput( event ){
 		const value = event.target.value;
+		this.props.history.push( '/search/'+value );
 		const nextState = {
 			inputVal: value,
 			autoCompleteEntries: this.generatePokemonAutoCompleteEntries(value)
 		}
-		console.log(nextState);
 		this.setState(nextState);
+	}
+	componentDidUpdate(){
+		console.log(this.props);
 	}
 	useAutoCompleteEntry( event ){
 		const entryText = event.target.innerText;
@@ -53,27 +65,32 @@ class PokeSearch extends Component {
 	}
 	generatePokemonAutoCompleteEntries( partialText ){
 
-		if(partialText.length===0 || this.pokemonBaseData.length===0){
+		if(partialText.length===0 || this.pokemonNames.length===0){
 			return '';
 		}
 		const regex = new RegExp('^'+partialText+'.*');
-		const candidateEntries = this.pokemonBaseData.filter( entry=> regex.test(entry)).slice(0,3);
-
+		this.candidateEntries = this.pokemonNames.filter( entry=> regex.test(entry)).slice(0,3);
+		console.log(regex,this.candidateEntries);
 		return (<div className="autocomplete-container">
-									{(candidateEntries.map( (entry, index) => 
+									{(this.candidateEntries.map( (entry, index) => 
 											<div onClick={this.useAutoCompleteEntry} className="autocomplete-entry" key={index}>{entry}</div>
 									))}
 								</div>)
 
 	}
+	handleSearchClick(){
+		const searchIDs = this.candidateEntries.map( name => this.pokemonBaseData[name].id);
+		this.props.history.push(`/search/${this.props.match.params.term}/results/${searchIDs.join(',')}`);
+	}
 	render(){
+		const searchTerm = this.props.match.params.term || '';
 		return (
 <div className="pokedex-search">
 	<div className="input-container">
-		<input onChange={this.updateInput} className="nameinput" type="text" placeholder="enter name" value={this.state.inputVal}></input>
+		<input onChange={this.updateInput} className="nameinput" type="text" placeholder="enter name" value={searchTerm}></input>
 		{this.state.autoCompleteEntries}
 	</div>
-	<button className="searchbutton">SEARCH</button>
+	<button className="searchbutton" onClick={this.handleSearchClick}>SEARCH</button>
 	<Link to="/results">go to results</Link>
 </div>
 	
