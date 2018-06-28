@@ -1,0 +1,31 @@
+.pokedex-card{
+	width: 50%;
+	height: 50%;
+	background-color: lightgreen;
+	float: left;	
+}
+.pokedex-card .resultsCard{
+	width: 90%;
+	height: 90%;
+	background-color: white;
+	position: relative;
+	left: 5%;
+	top: 5%;
+}
+.pokedex-card .picture{
+	height: 100%;
+	width: 90%;
+	margin: 0 auto;
+	background-image: url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png);
+	background-repeat: no-repeat;
+	background-size: 80%;
+	background-position: center;
+	box-sizing: border-box;
+}
+.pokedex-card figcaption.name{
+	position: absolute;
+	bottom: 0%;
+	font-size: 5vmin;
+	text-align: center;
+	width: 100%;
+}

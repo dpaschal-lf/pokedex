@@ -6,7 +6,7 @@ class PokeSearch extends Component {
 	constructor(props){
 		super(props);
 		this.pokemonBaseData = [];
-		this.maxAutoCompleteEntries = 3;
+		this.maxAutoCompleteEntries = 4;
 		this.candidateEntries = [];
 		this.state = {
 			inputVal: '', 
@@ -69,7 +69,7 @@ class PokeSearch extends Component {
 			return '';
 		}
 		const regex = new RegExp('^'+partialText+'.*');
-		this.candidateEntries = this.pokemonNames.filter( entry=> regex.test(entry)).slice(0,3);
+		this.candidateEntries = this.pokemonNames.filter( entry=> regex.test(entry)).slice(0,this.maxAutoCompleteEntries);
 		console.log(regex,this.candidateEntries);
 		return (<div className="autocomplete-container">
 									{(this.candidateEntries.map( (entry, index) => 
